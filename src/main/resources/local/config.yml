@@ -29,10 +29,10 @@ database:
   user: root
 
   # the password
-  password: poipoi
+  password: root
 
   # the JDBC URL
-  url: jdbc:mysql://localhost/webshop?serverTimezone=UTC
+  url: jdbc:mysql://167.99.215.253/webshop?serverTimezone=UTC
 
   # any properties specific to your JDBC driver:
   properties:

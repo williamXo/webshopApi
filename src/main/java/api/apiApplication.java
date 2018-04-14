@@ -1,12 +1,11 @@
 package api;
 
 import api.model.User;
+import api.resources.OrderResource;
 import api.resources.ProductResource;
 import api.resources.UserResource;
-import api.service.ProductService;
-import api.service.UserAuthenticator;
-import api.service.UserAuthorizer;
-import api.service.UserService;
+import api.service.*;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import io.dropwizard.Application;
 import io.dropwizard.auth.AuthDynamicFeature;
 import io.dropwizard.auth.AuthValueFactoryProvider;
@@ -43,15 +42,15 @@ public class apiApplication extends Application<apiConfiguration> {
 
         UserService userService = new UserService(jdbi);
         ProductService productService = new ProductService(jdbi);
-
-
+        OrderService orderService = new OrderService(jdbi);
 
         ProductResource productResource = new ProductResource(productService);
         UserResource userResource = new UserResource(userService);
-
+        OrderResource orderResource =  new OrderResource(orderService);
 
         environment.jersey().register(productResource);
         environment.jersey().register(userResource);
+        environment.jersey().register(orderResource);
 
 
         environment.jersey().register(new AuthDynamicFeature(
