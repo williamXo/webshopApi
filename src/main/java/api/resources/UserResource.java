@@ -35,9 +35,10 @@ public class UserResource {
 
 
     @PUT
+    @PermitAll
     @Path("/update")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void updateUser(User user){
+    public void updateUser(@Auth User user){
         service.updateUser(user);
     }
 
@@ -46,7 +47,6 @@ public class UserResource {
     @JsonView(View.Public.class)
     public User  authenticate(@Auth User authenticator)
     {
-
         return service.getlogin(authenticator);
     }
 
