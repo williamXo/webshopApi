@@ -22,7 +22,6 @@ public class UserAuthenticator implements Authenticator<BasicCredentials, User> 
 
     @Override
     public Optional<User> authenticate(BasicCredentials credentials) throws AuthenticationException {
-        System.out.println(credentials.getUsername());
         User user = service.loginUser(credentials.getUsername(), credentials.getPassword());
         if(user.getUsername() != null && user.getUsername().equals(credentials.getUsername())){
           return Optional.of(user);

@@ -31,4 +31,7 @@ public  interface ProductDAO {
     @SqlQuery("select * from product JOIN order_product on product.id = product_id where order_id = :id")
     @RegisterRowMapper(ProductMapper.class)
     List<Product> getProductsByOrder(@Bind("id") int id);
+
+    @SqlUpdate("DELETE FROM product where id= :id")
+    void deleteProductById(@Bind("id") int id);
 }

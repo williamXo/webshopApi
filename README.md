@@ -1,13 +1,90 @@
 # api
 
-How to start the api application
+Api ip address
 ---
+http://167.99.215.253:8080/api
 
-1. Run `mvn clean install` to build your application
-1. Start application with `java -jar target/webshop-1.jar server config.yml`
-1. To check that your application is running enter url `http://localhost:8080`
 
-Health Check
+Account information
 ---
+**Normal user**
+Username: user
+Password: user
 
-To see your applications health enter url `http://localhost:8081/healthcheck`
+**Admin user**
+Username: admin
+Password: admin
+
+#/user 
+	[GET]	
+	 @RolesAllowed("admin")
+	/{username}
+	returns object of user by name
+	
+	[PUT]	
+	/update		(User user)
+	updates the user
+	
+	[GET]	
+	/login		(Authorization)
+	returns valid user
+	
+	[POST]
+    /register   (User user)
+    creates a new user
+    
+    [DELETE]
+     @RolesAllowed("admin")
+     /delete/{id}"
+     deletes account by id
+	
+#/products 
+		
+	[GET]	
+	/
+	returns all products
+	
+	[GET]	
+	/{id}
+	returns product by id}
+	
+	[PUT]	
+	 @RolesAllowed("admin")
+	/update (Product product)
+	Updates the product
+	
+	[POST]
+	 @RolesAllowed("admin")
+	/add		(Product product)
+	adds a product to the database
+	
+    [DELETE]
+    @RolesAllowed("admin")
+    /{id}
+    Deletes the product by id
+
+#/order 
+    		
+    	[GET]	
+    	@RolesAllowed("admin")
+    	/
+    	returns all orders
+    	
+    	[GET]	
+    	/{id}
+    	returns order by id
+    	
+    	[GET]	
+    	@RolesAllowed("admin")
+    	/user/{id}
+    	returns order by id
+    	
+    	[GET]	
+    	/user		(Authorization)
+    	returns order by by user id
+    	
+    	[POST]
+    	/		(Order order, Authorization)
+    	adds a order to the database
+    	
+    	

@@ -28,4 +28,8 @@ public class ProductService {
     public Product getProductById(int id){
         return dao.getProductById(id);
     }
+
+    public void deleteProductById(int id) {
+        dao.deleteProductById(id);
+    }
 }

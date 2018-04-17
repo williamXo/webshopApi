@@ -27,7 +27,6 @@ public class ProductResource {
     }
 
     @GET
-
     public List<Product> getProducts()
     {
         return service.getProducts();
@@ -51,6 +50,13 @@ public class ProductResource {
         service.addProduct(product);
     }
 
+    @DELETE
+    @RolesAllowed("admin")
+    @Path("/{id}")
+    public void deleteProduct(@PathParam("id")int id)
+    {
+        service.deleteProductById(id);
+    }
 
 
 }

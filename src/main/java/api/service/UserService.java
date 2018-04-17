@@ -26,4 +26,13 @@ public class UserService {
     public void updateUser(User user){
         dao.updateUser(user);
     }
+
+    public void register(User user) {
+
+        dao.register(user);
+    }
+
+    public void deleteUserById(int id) {
+        dao.deleteUserById(id);
+    }
 }
