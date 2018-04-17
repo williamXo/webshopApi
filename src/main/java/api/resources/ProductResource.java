@@ -3,6 +3,7 @@ package api.resources;
 import api.model.Product;
 import api.service.ProductService;
 
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -49,6 +50,13 @@ public class ProductResource {
         service.addProduct(product);
     }
 
+    @DELETE
+    @RolesAllowed("admin")
+    @Path("/{id}")
+    public void deleteProduct(@PathParam("id")int id)
+    {
+        service.deleteProductById(id);
+    }
 
 
 }

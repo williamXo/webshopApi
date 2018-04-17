@@ -35,6 +35,7 @@ public class UserResource {
 
 
     @PUT
+    @PermitAll
     @Path("/update")
     @Consumes(MediaType.APPLICATION_JSON)
     public void updateUser(User user){
@@ -46,8 +47,25 @@ public class UserResource {
     @JsonView(View.Public.class)
     public User  authenticate(@Auth User authenticator)
     {
-
         return service.getlogin(authenticator);
     }
+
+    @POST
+    @Path("/register")
+    @JsonView(View.Public.class)
+    public void register(User user)
+    {
+        service.register(user);
+    }
+
+    @DELETE
+    @RolesAllowed("admin")
+    @Path("/delete/{id}")
+    @JsonView(View.Public.class)
+    public void delete(@PathParam("id")int id)
+    {
+        service.deleteUserById(id);
+    }
+
 
 }

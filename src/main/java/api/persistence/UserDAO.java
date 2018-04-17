@@ -1,5 +1,6 @@
 package api.persistence;
 
+        import api.model.Order;
         import api.model.User;
         import org.jdbi.v3.core.Jdbi;
         import org.jdbi.v3.sqlobject.config.RegisterRowMapper;
@@ -22,4 +23,10 @@ public interface UserDAO {
 
     @SqlUpdate("UPDATE user SET email= :email, firstName= :firstName, lastName= :lastName WHERE username = :username")
     void updateUser(@BindBean User user);
+
+    @SqlUpdate("INSERT INTO `user` (username, password, email, firstName, lastName, role ) VALUES (:username, :password, :email, :firstName, :lastName, :role)")
+    void register(@BindBean User user);
+
+    @SqlUpdate("DELETE FROM user where id= :id")
+    void deleteUserById(@Bind("id") int id);
 }
